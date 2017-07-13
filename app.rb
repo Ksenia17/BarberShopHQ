@@ -12,6 +12,10 @@ end
 class Barber < ActiveRecord::Base
 end
 
+before do
+  @barbers = Barber.all
+end  
+
 configure do
   enable :sessions
 end
@@ -31,7 +35,8 @@ before '/secure/*' do
 end
 
 get '/' do
-  erb :index
+    @barbers = Barber.order "created_at DESC"
+    erb :index
 end
 
 get '/login/form' do
