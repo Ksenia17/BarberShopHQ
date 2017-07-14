@@ -73,8 +73,8 @@ end
 
 post '/visit' do
   
-  c = Client.new params[:client]
-  c.save
+  @c = Client.new params[:client]
+#  c.save
 
 #  @username = params[:username]
 #  @phone = params[:phone]
@@ -89,10 +89,11 @@ post '/visit' do
 #  c.barber = @barber
 #  c.color = @color
 #  c.save
-  if c.save
+  if @c.save
     erb "<h2>Спасибо, что записались </h2>"
   else
-    erb "<h2>Ошибка! Введите данные</h2>"
+    @error = @c.errors.full_messages.first
+    erb :visit
   end  
         
 end
