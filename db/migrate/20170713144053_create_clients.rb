@@ -10,5 +10,10 @@ class CreateClients < ActiveRecord::Migration[5.1]
 
   		t.timestamps	
   	end	
+
+    Client.create :name =>'Client 1'
+    Client.create :name =>'Client 2'
+    Client.create :name =>'Client 3'
+
   end
 end

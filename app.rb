@@ -34,10 +34,7 @@ before '/secure/*' do
   end
 end
 
-get '/' do
-    @barbers = Barber.order "created_at DESC"
-    erb :index
-end
+
 
 get '/login/form' do
   erb :login_form
@@ -58,6 +55,13 @@ get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
 
+
+get '/' do
+    @barbers = Barber.order "created_at DESC"
+    erb :index
+end
+
+
 get '/visit' do
   erb :visit
 end
@@ -69,6 +73,13 @@ post '/visit' do
   @barber = params[:barber]
   @color = params[:color]
 
+  c = Client.new
+  c.name = @username 
+  c.phone =  @phone
+  c.datestamp = @datetime
+  c.barber = @barber
+  c.color = @color
+  c.save
 
   erb "<h2>Спасибо, что записались </h2>"
 end
