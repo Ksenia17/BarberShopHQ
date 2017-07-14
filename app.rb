@@ -89,6 +89,10 @@ post '/visit' do
 #  c.barber = @barber
 #  c.color = @color
 #  c.save
-
-  erb "<h2>Спасибо, что записались </h2>"
+  if c.save
+    erb "<h2>Спасибо, что записались </h2>"
+  else
+    erb "<h2>Ошибка! Введите данные</h2>"
+  end  
+        
 end
