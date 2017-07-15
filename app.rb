@@ -100,6 +100,12 @@ post '/visit' do
 end
 
 get '/barber/:id' do
-    
-    erb "This is be barber page"
+    @barber = Barber.find(params[:id])
+    erb :barber
 end
+
+get '/bookings' do
+    @clients = Client.all 
+    erb :bookings
+end
+
