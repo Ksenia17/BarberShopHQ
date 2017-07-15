@@ -98,3 +98,8 @@ post '/visit' do
   end  
         
 end
+
+get '/barber/:id' do
+    
+    erb "This is be barber page"
+end
